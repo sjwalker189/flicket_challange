@@ -1,0 +1,34 @@
+type Event {
+	id: Int
+	name: String
+	description: String
+}
+
+type Ticket {
+	id: Int
+	quantity: Int
+}
+
+
+type Query {
+ 	events: [Event]
+	findEvent(id: Int): Event
+}
+
+input CustomerDetails {
+	name: String!
+	email: String!
+}
+
+input EventParams {
+	name: String!
+	description: String!
+	ticketsLimit: Int!
+}
+
+type Mutation {
+	createEvent(event: EventParams!): Event!
+	reserveTicket(eventId: Int!, quantity: Int!): Ticket
+	confirmTicket(ticketId: Int!, customerDetails: CustomerDetails!): Ticket
+}
+

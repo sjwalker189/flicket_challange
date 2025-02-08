@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+rm -f prisma/db.sqlite 
+rm -rf dist/ 
+rm -rf node_modules/ 

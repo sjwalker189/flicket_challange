@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+npm ci
+npx ts-node generate-typings.ts
+npx prisma db push
