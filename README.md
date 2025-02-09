@@ -2,13 +2,18 @@
 
 ## A few notes:
 
-Outside of a brief exploration of Next, I have no previous experience with any of the technologies used in this stack.
+Outside of a brief exploration of Next, I have no previous experience with any of the technologies used in this stack. I've left comments throughout the code on specific implementation details.
  
 I've prioritied completing the API (which I have done) rather than focusing too deeply on the Next.js side of the fence. I wanted to make a best effort to use the recommended technology choices. As such this took time away from end-to-end completion. Though, I felt it was important to atleast have graphql integrated on the client side and fetching _some_ data.
 
 I chose Prisma for database access with sqlite for expediency. I don't have a running postgres install and did not want to waste time configuring docker. I chose prisma because of it's dead simple schema definitions and abiliy to sync this with the database. Unfortunately, their API's are limited and I could not write the queries in the way I would do if I were writing plain SQL or using a query builder.
 
 Regarding GraphQL, I opted for the schema first approach with Nest. It did not provide the type safety I exepectd. I would chose the code first approach next time.
+
+## Concurrency
+To prevent overselling of tickets a database transaction is used. In order to accurately determine the remaining ticket count the count of remaining tickets if fetched inside the transaction to prevent the situation where the database is updated in between the users request and purchasing a ticket.
+
+The customer first reserves a ticket with a quantity. If successful (there are enough tickets) the customer can complete the purchase by entering their details. If they dont complete this process within 5 minutes the ticket is released.
 
 ## Running the API server
 
